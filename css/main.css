@@ -18,6 +18,7 @@ body {
 }
 .psi-good {
   color: #479b02;
+  border-color:#479b02 !important;
 }
 .psi-moderate {
   color: #006fa1;
