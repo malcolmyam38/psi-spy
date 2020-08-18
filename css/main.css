@@ -1,0 +1,73 @@
+/**
+@author Malcolm
+Main css file for project demo
+*/
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+#psi-table {
+  font-size: 0.75em;
+}
+.psi-values {
+  font-weight: bold;
+}
+.psi-good {
+  color: #479b02;
+}
+.psi-moderate {
+  color: #006fa1;
+}
+.psi-unhealthy {
+  color: #ffce03;
+}
+.psi-very-unhealthy {
+  color: #ffa800;
+}
+.psi-hazardous {
+  color: #d60000;
+}
+
+.stats-placeholder {
+  width: 100px;
+  height: 100px;
+  border: 5px solid red;
+  border-radius: 50%;
+  vertical-align: middle;
+  display: table;
+}
+.stats-content {
+    position: relative;
+    display: table-cell;
+    vertical-align:middle;
+    text-align: center;
+}
+.latest-psi-state {
+    font-weight:bold;
+    font-size:2em;
+}
+
+.latest-details-wrapper{
+    width: calc(100% - 110px);
+    display:inline-block;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 10px;
+    color: #333;
+}
+
+.latest-psi-status{
+    display: block;
+    font-size:1.5em;
+    font-weight: 700;
+}
+
+.latest-psi-time-wrapper{
+    display: inline-block;
+    font-size:0.75em;
+    line-height: 1.4;
+}
