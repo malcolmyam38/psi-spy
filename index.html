@@ -114,14 +114,29 @@
     </main>
     <!-- /.container -->
 
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <canvas id="myChart" height="200"></canvas>
+        </div>
+        <div class="col">
+
+        </div>
+      </div>
+      
+    </div>
+    <!-- /.container -->
+
     <!-- bootstrap n jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/chart.min.js"></script>
+
     <!-- own js script-->
     <script src="js/main.js"></script>
 
     <script
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=callback=initMap"
     async
     defer
   ></script>
@@ -180,6 +195,8 @@
         marker.addListener('click', function(){
             //${marker.title}--> reference to east/west/etc..
             //retreive from localstorage data 
+            //marker.title --> east / west ... etc
+            //${marker.title}PSI --> eastPSI / westPSI --> which we will get from localStorage
             let psiStorage = `${marker.title}PSI`; //eastPSI west PSI etc.. 
             
             let infowindowContent = "";//temp infowindowcontent
@@ -198,6 +215,46 @@
       }//end addMarker
   </script>
 
+
+  <script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: 'pm25 hourly index',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+  </script>
 
   </body>
 </html>
