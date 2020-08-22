@@ -17,7 +17,7 @@ $(document).ready(function () {
   //let enterDate = $("#dateSelect").val(); //NOT !value()
   let today = new Date();
   let dd = today.getDate();
-  let mm = today.getMonth();
+  let mm = today.getMonth() + 1;
   let yyyy = today.getFullYear();  
   if(dd < 10 ){
       dd = '0' + dd;
@@ -50,6 +50,18 @@ $(document).ready(function () {
         //number updates to the content
         //simply updating here
         $('.latest-psi-state').html(psi_twenty_four_hourly_national);
+
+
+        //set up info window
+        //#info-window-east etc.
+
+             
+        localStorage.setItem("eastPSI", psi_twenty_four_hourly.east);
+        localStorage.setItem("westPSI", psi_twenty_four_hourly.west);
+        localStorage.setItem("northPSI", psi_twenty_four_hourly.north);
+        localStorage.setItem("centralPSI", psi_twenty_four_hourly.national);
+        localStorage.setItem("southPSI", psi_twenty_four_hourly.south);
+        
       /*
           let target10 = data.items[0].readings.pm10_twenty_four_hourly;
           let target25 = data.items[0].readings.pm25_twenty_four_hourly;

@@ -119,5 +119,85 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <!-- own js script-->
     <script src="js/main.js"></script>
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+    async
+    defer
+  ></script>
+  <script>
+      //global map variables
+      let map;
+      let markers = [];
+      //NEA PSI locations
+      let locations = [
+          {name: "west",lat: 1.35735,lng: 103.7,}, //0
+          {name: "national",lat: 0,lng: 0},//1
+          {name: "east",lat:1.35735,lng: 103.94},//2
+          {name: "central",lat: 1.35735,lng: 103.82},//3
+          {name: "south",lat:1.29587,lng: 103.82},//4
+          {name: "north",lat:1.41803,lng:103.82}//5
+        ];
+
+      function initMap(){
+        let singaporeLocation = {lat: 1.3521, lng: 103.8198}
+
+        map = new google.maps.Map(document.getElementById("map"),
+        { //settings/options
+          center: singaporeLocation,
+            zoom: 10,
+            zoomControl: false,
+            scaleControl: false
+        });
+
+        //add markers when map is initialized
+        for(let i = 0; i < locations.length; i++){
+          console.log(locations[i]);
+          let markerPosition = {"lat": locations[i].lat, "lng": locations[i].lng};
+          
+          addMarker(markerPosition, locations[i].name, map);
+        }
+        
+      }//end initMap
+  
+      function addMarker(markerPosition, markerTitle, mapReference){
+        
+        //create infoWindow
+        let infowindow = new google.maps.InfoWindow({
+          content: `<div id=''>Some text</div>`
+        })
+
+        //create marker
+        let marker = new google.maps.Marker({
+          position: markerPosition,
+          map: mapReference,
+          animation: google.maps.Animation.DROP,
+          title: markerTitle
+        });
+
+        //add Click event listener and open infowin when we click on a marker
+        //retrieve from localstorage psi info and update
+        marker.addListener('click', function(){
+            //${marker.title}--> reference to east/west/etc..
+            //retreive from localstorage data 
+            let psiStorage = `${marker.title}PSI`; //eastPSI west PSI etc.. 
+            
+            let infowindowContent = "";//temp infowindowcontent
+            //if localstorage is available use that 
+            if(localStorage.getItem(psiStorage) !== ""){
+                //do sth
+                infowindowContent = localStorage.getItem(psiStorage);//
+            }else{
+                //else do normal ajax api query here
+                infowindowContent = "";
+            }
+            infowindow.setContent(`<h6>${psiStorage}</h6>PSI: ${localStorage.getItem(psiStorage)}`);
+
+            infowindow.open(mapReference, marker);
+        });
+      }//end addMarker
+  </script>
+
+
   </body>
 </html>
